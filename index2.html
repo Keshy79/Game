@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        table {
+            border: 1px solid black;
+            width: 50%;
+            height: 500px;
+            margin-left: 25%;
+            margin-top: 5%;
+        }
+        .text-center {
+            text-align: center;
+        }
+        td {
+            border: 1px solid black;
+            width: 33%;
+            height: 33%;
+            font-size: 3em;
+            cursor: pointer;
+        }
+        #show {
+            margin-left: 25%;
+            margin-top: 5%;
+            font-size: 2em;
+            width: 50%;
+            height: 10%;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="show"></div>
+    <table class="text-center">
+        <tr>
+            <td id="play1" onclick="play(1)"></td>
+            <td id="play2" onclick="play(2)"></td>
+            <td id="play3" onclick="play(3)"></td>
+        </tr>
+        <tr>
+            <td id="play4" onclick="play(4)"></td>
+            <td id="play5" onclick="play(5)"></td>
+            <td id="play6" onclick="play(6)"></td>
+        </tr>
+        <tr>
+            <td id="play7" onclick="play(7)"></td>
+            <td id="play8" onclick="play(8)"></td>
+            <td id="play9" onclick="play(9)"></td>
+        </tr>
+    </table>
+
+    <script>
+        let Turn = "x";
+        const plays = ['','','','','','','','',''];
+
+        const changeTurn = () =>{
+            Turn = (Turn === 'x') ? 'o' : 'x';
+        }
+
+        const winConditions = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+            [0, 4, 8], [2, 4, 6]              // Diagonals
+        ];
+
+        function checkWin(player) {
+            return winConditions.some(combination => {
+                return combination.every(index => {
+                    return plays[index] === player;
+                });
+            });
+        }
+
+        function announceWinner(player) {
+            document.getElementById("show").innerHTML = "Player " + player.toUpperCase() + " wins!";
+            setTimeout(function() {
+                document.getElementById("show").innerHTML = "Tic Tac Toe";
+                // Turn = "x";
+                // plays.fill('');
+            }, 3000);
+        }
+
+        function play(cell) {
+            const cellIndex = cell - 1;
+            if (!plays[cellIndex]) {
+                document.getElementById("play" + cell).innerHTML = Turn.toUpperCase();
+                plays[cellIndex] = Turn;
+                if (checkWin(Turn)) {
+                    announceWinner(Turn);
+                } else {
+                    changeTurn();
+                }
+                console.log(Turn);
+            } else {
+                console.log('Cell already occupied!');
+                document.getElementById("show").innerHTML = "Cell already occupied!";
+                setTimeout(function() {
+                    document.getElementById("show").innerHTML = "";
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
