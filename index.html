@@ -56,7 +56,7 @@
     </table>
 
     <script>
-        let Turn = "x";
+        // let Turn = "x";
 
         const changeTurn = () =>{
             if(Turn == 'x'){
@@ -67,41 +67,56 @@
         }
 
         function checkWinner() {
-            let play1 = document.getElementById("play1").innerHTML;
-            let play2 = document.getElementById("play2").innerHTML;
-            let play3 = document.getElementById("play3").innerHTML;
-            let play4 = document.getElementById("play4").innerHTML;
-            let play5 = document.getElementById("play5").innerHTML;
-            let play6 = document.getElementById("play6").innerHTML;
-            let play7 = document.getElementById("play7").innerHTML;
-            let play8 = document.getElementById("play8").innerHTML;
-            let play9 = document.getElementById("play9").innerHTML;
+    let play1 = document.getElementById("play1").innerHTML;
+    let play2 = document.getElementById("play2").innerHTML;
+    let play3 = document.getElementById("play3").innerHTML;
+    let play4 = document.getElementById("play4").innerHTML;
+    let play5 = document.getElementById("play5").innerHTML;
+    let play6 = document.getElementById("play6").innerHTML;
+    let play7 = document.getElementById("play7").innerHTML;
+    let play8 = document.getElementById("play8").innerHTML;
+    let play9 = document.getElementById("play9").innerHTML;
 
-            if (play1 == "x" && play2 == "x" && play3 == "x" ||
-                play4 == "x" && play5 == "x" && play6 == "x" ||
-                play7 == "x" && play8 == "x" && play9 == "x" ||
-                play1 == "x" && play4 == "x" && play7 == "x" ||
-                play2 == "x" && play5 == "x" && play8 == "x" ||
-                play3 == "x" && play6 == "x" && play9 == "x" ||
-                play1 == "x" && play5 == "x" && play9 == "x" ||
-                play3 == "x" && play5 == "x" && play7 == "x") {
-                document.getElementById("result").innerHTML = "X WON!";
+    if (play1 == "x" && play2 == "x" && play3 == "x" ||
+        play4 == "x" && play5 == "x" && play6 == "x" ||
+        play7 == "x" && play8 == "x" && play9 == "x" ||
+        play1 == "x" && play4 == "x" && play7 == "x" ||
+        play2 == "x" && play5 == "x" && play8 == "x" ||
+        play3 == "x" && play6 == "x" && play9 == "x" ||
+        play1 == "x" && play5 == "x" && play9 == "x" ||
+        play3 == "x" && play5 == "x" && play7 == "x") {
+        document.getElementById("result").innerHTML = "X WON!";
+        Turn = "o";
+        resetCells();
+    } else if (play1 == "o" && play2 == "o" && play3 == "o" ||
+               play4 == "o" && play5 == "o" && play6 == "o" ||
+               play7 == "o" && play8 == "o" && play9 == "o" ||
+               play1 == "o" && play4 == "o" && play7 == "o" ||
+               play2 == "o" && play5 == "o" && play8 == "o" ||
+               play3 == "o" && play6 == "o" && play9 == "o" ||
+               play1 == "o" && play5 == "o" && play9 == "o" ||
+               play3 == "o" && play5 == "o" && play7 == "o") {
+        document.getElementById("result").innerHTML = "O WON!";
+        Turn = "x";
+        resetCells();
+    } else if (play1 != "" && play2 != "" && play3 != "" && play4 != "" && play5 != "" && play6 != "" && play7 != "" && play8 != "" && play9 != "") {
+        document.getElementById("result").innerHTML = "Draw!";
+        resetCells();
+    }
+}
 
-            } else if (play1 == "o" && play2 == "o" && play3 == "o" ||
-                       play4 == "o" && play5 == "o" && play6 == "o" ||
-                       play7 == "o" && play8 == "o" && play9 == "o" ||
-                       play1 == "o" && play4 == "o" && play7 == "o" ||
-                       play2 == "o" && play5 == "o" && play8 == "o" ||
-                       play3 == "o" && play6 == "o" && play9 == "o" ||
-                       play1 == "o" && play5 == "o" && play9 == "o" ||
-                       play3 == "o" && play5 == "o" && play7 == "o") {
-                document.getElementById("result").innerHTML = "O WON!";
+function resetCells() {
+    document.getElementById("play1").innerHTML = "";
+    document.getElementById("play2").innerHTML = "";
+    document.getElementById("play3").innerHTML = "";
+    document.getElementById("play4").innerHTML = "";
+    document.getElementById("play5").innerHTML = "";
+    document.getElementById("play6").innerHTML = "";
+    document.getElementById("play7").innerHTML = "";
+    document.getElementById("play8").innerHTML = "";
+    document.getElementById("play9").innerHTML = "";
+}
 
-            } else{
-            play1 != "" && play2 != "" && play3 != "" && play4 != "" && play5 != "" && play6 != "" && play7 != "" && play8 != "" && play9 != ""} {
-                document.getElementById("result").innerHTML = "Draw!";
-            }
-        }
 
         function play1() {
             document.getElementById("play1").innerHTML = "X";
