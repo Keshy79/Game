@@ -37,7 +37,7 @@
 </head>
 <body>
     <div id="result"></div>
-    <table class="text-center ">
+    <table class="text-center">
         <tr>
             <td id="play1" onclick="play1()"></td>
             <td id="play2" onclick="play2()"></td>
@@ -96,6 +96,9 @@
                        play1 == "O" && play5 == "O" && play9 == "O" ||
                        play3 == "O" && play5 == "O" && play7 == "O") {
                 document.getElementById("result").innerHTML = "O WON!";
+                setTimeout(() => {
+                    
+                }, 3000);
                 resetCells();
             } else if (play1 != "" && play2 != "" && play3 != "" && play4 != "" && play5 != "" && play6 != "" && play7 != "" && play8 != "" && play9 != "") {
                 document.getElementById("result").innerHTML = "Draw!";
