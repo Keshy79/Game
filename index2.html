@@ -54,9 +54,10 @@
     </table>
 
     <script>
+        let players = play1, play2, play3, play4, play5, play6, play7, play8, play9
         let Turn = "x";
         const plays = ['','','','','','','','',''];
-
+        
         const changeTurn = () =>{
             Turn = (Turn === 'x') ? 'o' : 'x';
         }
@@ -66,7 +67,6 @@
             [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
             [0, 4, 8], [2, 4, 6]              // Diagonals
         ];
-
         function checkWin(player) {
             return winConditions.some(combination => {
                 return combination.every(index => {
@@ -74,13 +74,13 @@
                 });
             });
         }
-
         function announceWinner(player) {
             document.getElementById("show").innerHTML = "Player " + player.toUpperCase() + " wins!";
+            if(players){
+                players = ""
+            }
             setTimeout(function() {
                 document.getElementById("show").innerHTML = "Tic Tac Toe";
-                // Turn = "x";
-                // plays.fill('');
             }, 3000);
         }
 
@@ -91,7 +91,9 @@
                 plays[cellIndex] = Turn;
                 if (checkWin(Turn)) {
                     announceWinner(Turn);
-                } else {
+                    
+                } 
+                else {
                     changeTurn();
                 }
                 console.log(Turn);
@@ -101,7 +103,8 @@
                 setTimeout(function() {
                     document.getElementById("show").innerHTML = "";
                 }, 3000);
-            }
+                // document.getElementById('play1') = ''
+            } 
         }
     </script>
 </body>
